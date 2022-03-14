@@ -1,4 +1,4 @@
-package virtualWallet
+package com.gmail.at.kotamadeo.virtualWallet
 
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -83,10 +83,10 @@ fun main(args: Array<String>) {
                                         "Пополните баланс и попробуйте снова!%s%n", ANSI_RED, ANSI_RESET
                             )
                         } else {
-                            if (moneyToTransferRUB > 75000.01) {
-                                balanceRUB -= moneyToTransferRUB * BANK_COMMISSION_GROSS + BANK_COMMISSION_RUB
+                            balanceRUB -= if (moneyToTransferRUB > 75000.01) {
+                                moneyToTransferRUB * BANK_COMMISSION_GROSS + BANK_COMMISSION_RUB
                             } else {
-                                balanceRUB -= moneyToTransferRUB + BANK_COMMISSION_RUB
+                                moneyToTransferRUB + BANK_COMMISSION_RUB
                             }
                             System.out.printf(
                                 "%sПеревод денежных средств пользователю %s успешно завершен!%s%n",
